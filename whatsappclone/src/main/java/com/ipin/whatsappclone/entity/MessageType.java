@@ -1,4 +1,4 @@
-package com.ipin.entity;
+package com.ipin.whatsappclone.entity;
 
 public enum MessageType {
     TEXT,

@@ -1,6 +1,6 @@
-package com.ipin.entity;
+package com.ipin.whatsappclone.entity;
 
-import com.ipin.common.BaseAuditingEntity;
+import com.ipin.whatsappclone.common.BaseAuditingEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,10 +1,10 @@
-package com.ipin.entity;
+package com.ipin.whatsappclone.entity;
 
 import java.beans.Transient;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.ipin.common.BaseAuditingEntity;
+import com.ipin.whatsappclone.common.BaseAuditingEntity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

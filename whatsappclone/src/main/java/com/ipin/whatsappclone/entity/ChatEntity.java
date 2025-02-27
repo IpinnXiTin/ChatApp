@@ -1,4 +1,4 @@
-package com.ipin.entity;
+package com.ipin.whatsappclone.entity;
 
 import java.beans.Transient;
 import java.time.LocalDateTime;

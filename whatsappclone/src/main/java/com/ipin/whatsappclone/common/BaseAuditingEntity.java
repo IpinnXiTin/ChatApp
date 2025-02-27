@@ -1,4 +1,4 @@
-package com.ipin.common;
+package com.ipin.whatsappclone.common;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
