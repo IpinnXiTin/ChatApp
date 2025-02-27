@@ -12,7 +12,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import static org.springframework.security.config.Customizer.withDefaults;
-import java.util.Arrays;
+import java.util.Arrays; 
 import java.util.Collections;
 
 @Configuration
