@@ -18,7 +18,7 @@ spring:
 
   security:
     oauth2:
-      resoureserver:
+      resourceserver:
         jwt:
           issuer-uri: http://0.0.0.0:9090/realms/whatsapp-clone
 
@@ -26,7 +26,10 @@ spring:
     multipart:
       max-file-size: 50MB
 
+springdoc:
+  default-produces-media-type: application/json
+
 application:
   file:
     uploads:
-      media-output.path: ./uploads
+      media-output-path: ./uploads

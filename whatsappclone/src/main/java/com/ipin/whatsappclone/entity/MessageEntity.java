@@ -1,6 +1,8 @@
 package com.ipin.whatsappclone.entity;
 
-import com.ipin.whatsappclone.common.BaseAuditingEntity;
+import com.ipin.whatsappclone.constants.MessageConstants;
+import com.ipin.whatsappclone.constants.MessageState;
+import com.ipin.whatsappclone.constants.MessageType;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -27,6 +30,10 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Table(name = "messages")
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@NamedQuery(name = MessageConstants.FIND_MESSAGES_BY_CHAT_ID,
+            query = "select m from MessageEntity m where m.chat.id = :chatId order by m.createdDate")
+@NamedQuery(name = MessageConstants.SET_MESSAGES_TO_SEEN_BY_CHAT,
+            query = "update MessageEntity set state = :newState where chat.id = :chatId")
 public class MessageEntity extends BaseAuditingEntity {
     
     @Id
@@ -52,4 +59,6 @@ public class MessageEntity extends BaseAuditingEntity {
 
     @Column(name = "receiver_id", nullable = false)
     String receiverId;
+    String mediaFilePath;
+
 }

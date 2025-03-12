@@ -1,15 +1,11 @@
 package com.ipin.whatsappclone.entity;
 
-import java.beans.Transient;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import com.ipin.whatsappclone.common.BaseAuditingEntity;
-
+import jakarta.persistence.Transient;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -23,14 +19,19 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(name = "users")
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@NamedQuery(name = "UserConstants.FIND_USER_BY_EMAIL",
+            query = "select u from UserEntity u where u.email = :email")
+@NamedQuery(name = "UserConstants.FIND_ALL_USERS_EXCEPT_SELF",
+            query = "select u from UserEntity u where u.id != :publicId")
+@NamedQuery(name = "UserConstants.FIND_USER_BY_PUBLIC_ID",
+            query = "select u from UserEntity u where u.id = :publicId")
 public class UserEntity extends BaseAuditingEntity {
     
     private static final int LAST_ACTIVE_INTERVAL = 5;
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     String id;
     String firstName;
     String lastName;
@@ -44,7 +45,7 @@ public class UserEntity extends BaseAuditingEntity {
     List<ChatEntity> chatsAsRecipient;
     
     @Transient
-    boolean isUserOnline() {
+    public boolean isUserOnline() {
         return lastSeen != null && lastSeen.isAfter(LocalDateTime.now().minusMinutes(LAST_ACTIVE_INTERVAL));
     }
 }
